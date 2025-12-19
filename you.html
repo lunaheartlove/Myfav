@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOVE</title>
+
+    <!-- ฟอนต์ -->
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* background */
+            --bg-1: #FDC7D7;
+            --bg-2: #FFFFFF;
+
+            /* card */
+            --card-bg: #FFFFFF;
+            --border-soft: #E86C8D;
+
+            /* text */
+            --text-main: #5C3A42;
+            --text-soft: #6b4a52;
+
+            /* pink */
+            --pink-main: #E86C8D;
+            --pink-soft: #F9A3B8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Mali', cursive;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(to right, #FDC7D7, #FFFFFF, #FDC7D7);
+            color: var(--text-main);
+        }
+
+        /* ===== STEP CARD ===== */
+        .step {
+            display: none;
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 44px 56px;
+            max-width: 620px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid var(--border-soft);
+            box-shadow: 0 8px 20px rgba(232, 108, 141, 0.15);
+            animation: fadeUp .6s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        /* ===== TEXT ===== */
+        .step p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-soft);
+            margin-bottom: 22px;
+        }
+
+        .step h2 {
+            font-size: 26px;
+            color: var(--text-main);
+            margin: 14px 0;
+        }
+
+        .tiny-note {
+            font-size: 14px;
+            color: #8a6a72;
+            margin-top: 18px;
+        }
+
+        /* ===== TAG ===== */
+        .headline-tag {
+            display: inline-block;
+            background: #E86C8D;
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 999px;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        /* ===== TYPING ===== */
+        #typingText {
+            font-size: 17px;
+            color: var(--text-soft);
+            line-height: 1.8;
+            min-height: 110px;
+            margin: 22px 0;
+            padding: 18px 20px;
+            border-radius: 18px;
+            background: #FDC7D7;
+            border: 1px dashed rgba(232, 108, 141, 0.5);
+            white-space: pre-line;
+            position: relative;
+        }
+
+        #typingText::after {
+            content: "";
+            width: 6px;
+            height: 16px;
+            background: var(--pink-main);
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            border-radius: 999px;
+            animation: caret .8s infinite;
+        }
+
+        @keyframes caret {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            50.01%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* ===== BUTTON ===== */
+        .btn {
+            border: none;
+            border-radius: 999px;
+            padding: 14px 36px;
+            font-size: 18px;
+            cursor: pointer;
+            font-family: 'Mali', cursive;
+            transition: .25s ease;
+        }
+
+        .btn-primary {
+            background: #E86C8D;
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(232, 108, 141, 0.35);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 108, 141, 0.45);
+        }
+
+        .btn-primary:disabled {
+            opacity: .45;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* ===== ANIMATION ===== */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =================================================
+           RESPONSIVE (เหมือน LOVE)
+        ================================================= */
+
+        /* มือถือเล็กมาก */
+        @media (max-width: 360px) {
+            .step {
+                padding: 22px 18px;
+                border-radius: 20px;
+            }
+
+            .step p {
+                font-size: 15px;
+            }
+
+            .step h2 {
+                font-size: 20px;
+            }
+
+            #typingText {
+                font-size: 14.5px;
+                padding: 14px;
+                min-height: 90px;
+            }
+
+            .btn {
+                width: 100%;
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+        }
+
+        /* มือถือทั่วไป */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .step {
+                padding: 26px 22px;
+            }
+
+            .step p {
+                font-size: 16px;
+            }
+
+            .step h2 {
+                font-size: 22px;
+            }
+
+            #typingText {
+                font-size: 15.5px;
+                padding: 16px;
+            }
+
+            .btn {
+                width: 100%;
+                font-size: 17px;
+                padding: 13px 28px;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            .step {
+                max-width: 720px;
+                padding: 40px 50px;
+            }
+        }
+
+        /* แนวนอนจอเตี้ย */
+        @media (orientation: landscape) and (max-height: 420px) {
+            body {
+                align-items: flex-start;
+                padding-top: 14px;
+                padding-bottom: 14px;
+            }
+
+            .step {
+                padding: 20px 24px;
+            }
+
+            .step p {
+                font-size: 14.5px;
+            }
+
+            #typingText {
+                font-size: 14px;
+                min-height: 70px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+        <p>
+            วันนี้มีอะไรอยากบอกเธอหน่อย
+            แต่เขินเลยขอเล่าผ่านเว็บนี้แทนได้ไหม
+        </p>
+
+        <button class="btn btn-primary" id="startBtn">
+            เปิดดูหน่อยได้มั้ย
+        </button>
+
+        <p class="tiny-note">
+            ใช้เวลาไม่นาน แต่เก็บไว้ได้นานมากๆ
+        </p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+        <div class="headline-tag">จากใจเราถึงเธอ</div>
+
+        <h2>มีเรื่องนึงที่เราอยากบอก...</h2>
+        <p>ลองอ่านช้าๆ นะ เราตั้งใจพิมพ์ทุกคำเลย</p>
+
+        <div id="typingText"></div>
+
+        <button class="btn btn-primary" id="toFlowerBtn" disabled>
+            ต่อไปนิดนึงนะ
+        </button>
+    </div>
+
+    <script>
+        const step1 = document.getElementById("step1");
+        const step2 = document.getElementById("step2");
+        const startBtn = document.getElementById("startBtn");
+        const typingEl = document.getElementById("typingText");
+        const nextBtn = document.getElementById("toFlowerBtn");
+
+        const text =
+            `เราไม่รู้ว่าโคนันรู้สึกยังไงกับเราบ้าง แต่ไม่ว่าจะเป็นแบบไหนเราโอเคทั้งนั้น เราชอบที่โคนันเป็นโคนันนะ ถ้าเกิดวันนึงโคนันต้องการใครสักคนฮีลใจหันมาหาเรานะ เรารอตรงนี้เสมอเราคอยรับฟังเอง ตั้งแต่วันแรกที่คุยกันเรารู้สึกเหมือนโคนันกดดันตัวเองอยู่ตลอดเลย เราไม่รู้ว่ามันจะเป็นแบบนั้นมั้ยแต่ มันมีบางสิ่งที่ทำให้เราคิดแบบนั้น เราอยากจะบอกว่าไม่ต้องกดดันมากก็ได้นะปล่อยตัวปล่อยใจสักครั้ง ปล่อยให้ร่างกายและจิตใจได้พักกับสิ่งที่เจอมามากมายในปีนี้ ให้เวลากับตัวเองสักนิด ไม่ต้องเข้มแข็งไปตลอดหรอก เหนื่อยก็ปล่อยพักสักนิด ลองหาเวลาอยู่กับตัวเองสักหน่อยก็กำลังพอดี...เราอยู่ตรงนี้ซัพพอร์ตเสมอแม้สักวันนึงเราอาจไม่ได้อยู่ในความสัมพันธ์นี้ก็ตาม เราพูดไม่เก่งมากเลยพิมพ์ข้อความทั้งหมดแทนข้อความในใจที่เราอยากจะบอกโคนันนะ💗`;
+
+        let index = 0;
+
+        /* เปิด STEP 2 */
+        startBtn.addEventListener("click", () => {
+            step1.classList.remove("active");
+            step2.classList.add("active");
+            startTyping();
+        });
+
+        /* พิมพ์ข้อความ */
+        function startTyping() {
+            if (index < text.length) {
+                typingEl.textContent += text.charAt(index);
+                index++;
+                setTimeout(startTyping, 40);
+            } else {
+                nextBtn.disabled = false; // ปลดล็อกปุ่ม
+            }
+        }
+
+        /* 👉 ลิงก์ไปหน้า menu.html */
+        nextBtn.addEventListener("click", () => {
+            window.location.href = "menu.html";
+        });
+    </script>
+
+
+</body>
+
+</html>

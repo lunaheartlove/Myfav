@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Mali', cursive;
+            background: linear-gradient(to right, #FDC7D7, #FFFFFF, #FDC7D7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .letter-card {
+            background: #fff;
+            border-radius: 25px;
+            padding: 50px 40px 40px;
+            width: min(90%, 700px);
+            border: 2px solid #E86C8D;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            color: #5C3A42;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        /* ================== ส่วนที่แก้หลัก ================== */
+        .letter-card p {
+            color: #5C3A42;
+            font-size: 18px;
+            line-height: 1.8;
+            white-space: pre-line;
+
+            max-height: 45vh;              /* จำกัดความสูง */
+            overflow-y: auto;              /* เลื่อนเมาส์/นิ้วได้ */
+            padding-right: 6px;
+            margin-bottom: 35px;
+
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* scrollbar สวย ๆ */
+        .letter-card p::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .letter-card p::-webkit-scrollbar-thumb {
+            background: #E86C8D;
+            border-radius: 10px;
+        }
+
+        .letter-card p::-webkit-scrollbar-track {
+            background: #F9D6E0;
+        }
+        /* ===================================================== */
+
+        .close-btn {
+            background: #E86C8D;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 36px;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 6px 18px rgba(232, 108, 141, 0.3);
+            align-self: center;
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 108, 141, 0.4);
+        }
+
+        /* กันติ่งขอบจอ */
+        @supports (padding: max(0px)) {
+            body {
+                min-height: 100dvh;
+                padding-left: max(24px, env(safe-area-inset-left));
+                padding-right: max(24px, env(safe-area-inset-right));
+                padding-top: max(24px, env(safe-area-inset-top));
+                padding-bottom: max(24px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* ---------- โทรศัพท์เล็ก ---------- */
+        @media (max-width: 360px) {
+            .letter-card {
+                padding: 26px 18px 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .letter-card p {
+                font-size: 15px;
+                max-height: 50vh;
+            }
+
+            .close-btn {
+                font-size: 15px;
+                padding: 8px 20px;
+            }
+        }
+
+        /* ---------- โทรศัพท์ทั่วไป ---------- */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .letter-card p {
+                font-size: 16px;
+                max-height: 50vh;
+            }
+        }
+
+        /* ---------- แนวนอนความสูงน้อย ---------- */
+        @media (orientation: landscape) and (max-height: 420px) {
+            .letter-card p {
+                max-height: 35vh;
+                font-size: 14px;
+            }
+        }
+
+        /* ---------- ลด motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            .close-btn {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-card">
+        <h2>I'm always here for you </h2>
+
+        <p>เปนไงบ้าง 3วันที่ผ่านมาเหนื่อยบ้างมั้ย ไม่สิเราต้องถามว่าที่ผ่านมาโคนันเหนื่อยมากรึป่าว... เราอยากเจอกับโคนันให้ไวกว่านี้จังอยากคอยซัพพอร์ตในทุกๆเรื่องเลย เรารู้ว่าในบางครั้งเราอาจหน้าเบื่อและทำให้โคนันโกรธเราอยู่บ่อยๆ คงเป็นเพราะเราใช้เวลากับตัวเองมาทั้งชีวิตอยู่กับตัวเองตลอด พอมีคนเข้ามาเลยทำตัวไม่ถูกอาจดูงกๆงักๆอยู่ในหลายๆด้าน เราเองรู้ดีว่ามีพบก้ต้องมีจากเราเลยอยากพยายามกับปัจจุบันให้มากที่สุดก่อนที่มันจะสายไป อยากคอยซัพพอร์ตความรู้สึก ถึงเราจะไม่ได้อยู่ใกล้กันแต่ก็ อยากอยู่ด้วยในวันที่โคนันไม่มีใคร เราเองก็ไม่รู้เรื่องความรักอะไรมากหรอกที่เรามีให้คงจะมีแต่ความรู้สึกของเราที่มีต่อโคนันนะ เราค่อยๆมาเรียนรู้ด้วยกันทีละนิดกันเถอะ อย่าพึ่งหมดความพยายามกับเราเลยให้เราได้ปรับตัวสักนิด🥹
+        </p>
+
+        <button class="close-btn" onclick="window.location.href='menu.html'">ปิด</button>
+    </div>
+</body>
+
+</html>
